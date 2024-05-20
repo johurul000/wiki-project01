@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block form %}
+    <form action="{% url 'search_view' %}" method="GET">
+        <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+        <input type="submit" value="Search">
+    </form>
+{% endblock %}
+
+{% block body %}
+
+    
+    
+    {% if content%}
+        <br>
+        <form action="{% url 'editentry_view' key=title %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Edit">
+        </form>
+        <br>
+        {% load markdownify %}
+        {{ content |markdownify }}
+        
+    {% else %}
+        <h1>Page not Found!</h1>
+    {% endif %}
+    
+{% endblock %}

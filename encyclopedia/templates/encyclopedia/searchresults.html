@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block form %}
+    <form method="GET">
+        <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+        <input type="submit" value="Search">
+    </form>
+{% endblock %}
+
+{% block body %}
+    
+    {% if results%}
+        <h1>Search results</h1>
+        <ul>
+            {% for result in results %}
+                <li><a href="/wiki/{{ result }}">{{ result }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <br><h2 style="color: red;">No result Found</h2>
+    {% endif %}
+    
+
+    
+{% endblock %}

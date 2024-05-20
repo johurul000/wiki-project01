@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block form %}
+    <form action="{% url 'search_view' %}" method="GET">
+        <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+        <input type="submit" value="Search">
+    </form>
+{% endblock %}
+
+{% block body %}
+    <h1>All Pages</h1>
+
+    <ul>
+        {% for entry in entries %}
+            <li><a href="/wiki/{{ entry }}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
